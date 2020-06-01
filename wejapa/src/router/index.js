@@ -1,25 +1,47 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Login from '../views/Login.vue'
+import Profile from '../views/Profile.vue'
+import Message from '../views/Message.vue'
+import Jobs from '../views/JobListing.vue' 
+
+
+
+// This is for importing the necessary layouts for the webpages
+import Auth from '../layouts/auth'
+import Default from '../layouts/default'
+
+// This is where the imported layouts are used by vue
+Vue.component('auth-layout', Auth)
+Vue.component('default-layout', Default)
 
 Vue.use(VueRouter)
 
   const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
-  },
+    name: 'Login',
+    meta: { layout: 'auth' },
+    component: Login,
+  },  
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/About.vue')
-    }
-  }
+    path: '/dashboard',
+    name: 'WeJapa',
+    meta: { layout: 'default' },
+    component: Jobs,
+  },  
+  {
+    path: '/profile',
+    name: 'Profile',
+    meta: { layout: 'default' },
+    component: Profile,
+  },  
+  {
+    path: '/message',
+    name: 'Message',
+    meta: { layout: 'default' },
+    component: Message,
+  },   
 ]
 
 const router = new VueRouter({

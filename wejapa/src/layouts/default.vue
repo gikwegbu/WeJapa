@@ -184,13 +184,10 @@ import axios from 'axios'
           this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
       },
       loadJobs(){
-        const _ = this;
-        const headers = { 
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYzU3OGE1YTdiZTc1MDAxNzVjZmMwMiIsImlhdCI6MTU5MTAwNTQ3NH0.e-uUjBFx7DoChemaFQcMrYmIIa00q9mhucEzAs22Eb0`
-              // 'Authorization': `Bearer ${_.token}`
-          }
+        const _ = this; 
 
-          const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYzU3OGE1YTdiZTc1MDAxNzVjZmMwMiIsImlhdCI6MTU5MTAwNTQ3NH0.e-uUjBFx7DoChemaFQcMrYmIIa00q9mhucEzAs22Eb0'
+          // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYzU3OGE1YTdiZTc1MDAxNzVjZmMwMiIsImlhdCI6MTU5MTAwNTQ3NH0.e-uUjBFx7DoChemaFQcMrYmIIa00q9mhucEzAs22Eb0'
+          const token = _.token
           const Config = {
             headers: {
                 Authorization: "Bearer " + token
