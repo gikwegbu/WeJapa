@@ -22,7 +22,7 @@
 
                                 <v-list-item-action>
                                     <v-icon color="grey">mdi-briefcase</v-icon> 
-                                    <v-list-item-action-text > &#36;700 </v-list-item-action-text> 
+                                    <v-list-item-action-text > &#36;{{ job.salary  }} </v-list-item-action-text> 
                                 </v-list-item-action>
                             </v-list-item> 
                         </v-list>
