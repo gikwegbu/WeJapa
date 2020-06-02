@@ -98,7 +98,7 @@
                 </v-card-actions>
               </v-card>
             </v-menu>
-         </div> 
+        </div> 
     </v-app-bar>
 
     <v-content>
@@ -146,21 +146,22 @@ import axios from 'axios'
     computed: {
       ...mapGetters([
         'token',
-        'profile'
+        'profile', 
       ]),
-        notifyMsgCount(){
-            const _ = this;
-            // return _.notifyMsgs.length
-            var count = 0, 
-                unreadMsg,
-                totalMsgs = _.notifyMsgs;
-            totalMsgs.forEach(msg => {
-                msg.read == true ? count++ : count
-            });
-            unreadMsg = _.notifyMsgs.length - count
-            return unreadMsg
+      notifyMsgCount(){
+          const _ = this;
+          // return _.notifyMsgs.length
+          var count = 0, 
+              unreadMsg,
+              totalMsgs = _.notifyMsgs;
+          totalMsgs.forEach(msg => {
+              msg.read == true ? count++ : count
+          });
+          unreadMsg = _.notifyMsgs.length - count
+          return unreadMsg
 
-        },
+      },
+      
     },
     data: () => ({
       drawer: null,
@@ -174,7 +175,7 @@ import axios from 'axios'
         ],
     }),
     created() {
-      this.loadJobs() 
+      this.loadJobs() ; 
     },
     methods: {
       ...mapActions([

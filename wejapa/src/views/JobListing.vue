@@ -9,8 +9,8 @@
                             Available Jobs
                         </v-card-title>
                         <v-divider class="mx-12" inset  ></v-divider>
-                        <v-card-text class="text--primary text-center">
-                            {{ num  }} 
+                        <v-card-text class="text--primary text-center"> 
+                            {{ availJob  }}
                         </v-card-text>
                     </v-card>
                 </v-col>
@@ -21,7 +21,7 @@
                         </v-card-title>
                         <v-divider class="mx-12" inset  ></v-divider>
                         <v-card-text class="text--primary text-center">
-                             {{ completedJobs.length  }}
+                             {{ uuAvailJob  }}
                         </v-card-text>
                     </v-card>
                 </v-col>
@@ -58,13 +58,19 @@ export default {
         MobileJobList,
     },
     computed: {
-        ...mapGetters(['jobs', 'bids', 'profile']),
+        ...mapGetters(['jobs', 'bids', 'profile', ]),
         num(){
             return this.jobs ?  this.jobs.length : 0
         },
         profileName(){
            return this.profile.name.split(' ')[0]  
-        }
+        },
+        availJob(){ 
+            return this.jobs ?  this.jobs.filter(job => job.status == 'Open').length : 0
+        },
+        uuAvailJob(){ 
+            return this.jobs ?  this.jobs.filter(job => job.status == 'Closed').length : 0
+        }, 
     },
     data(){
         return { 

@@ -1,6 +1,6 @@
 <template>
     <div class="bg">
-        <v-container >
+        <v-container fluid>
             <v-content>
                 <slot />
             </v-content>
