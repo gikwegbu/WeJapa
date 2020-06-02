@@ -41,7 +41,7 @@
                     <v-text-field  placeholder="Stackoverflow (optional)" v-model="profile.stackOverflow" name="stackOverflow" filled rounded type="text" ></v-text-field> 
                     <v-text-field  placeholder="Resume" v-model="profile.resume" name="resume" filled rounded type="text" ></v-text-field> 
 
-                    <v-btn type="submit" rounded block color="primary" :disabled="loginStatus">
+                    <v-btn type="submit" rounded block color="primary" :disabled="loginStatus" class="mb-3">
                         {{ loginStatus ? 'Processing...' : 'Update Profile'  }}
                         <v-icon class="fa fa-spin" v-if="loginStatus"> mdi-cog </v-icon>
                     </v-btn>

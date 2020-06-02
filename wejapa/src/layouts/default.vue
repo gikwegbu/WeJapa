@@ -98,7 +98,7 @@
                 </v-card-actions>
               </v-card>
             </v-menu>
-        </div> 
+         </div> 
     </v-app-bar>
 
     <v-content>
@@ -115,12 +115,22 @@
           <v-icon dark>mdi-theme-light-dark</v-icon>
         </v-btn> 
 
-        <v-btn class="mr-12 ml-12" fab dark color="primary" to="/dashboard">
+        <v-btn class="ml-6" fab dark small color="" >
+          <v-icon dark>mdi-application</v-icon>
+        </v-btn> 
+
+        <v-btn class="mr-6 ml-6" fab dark color="primary" to="/dashboard">
           <v-icon dark>mdi-monitor-dashboard</v-icon>
         </v-btn>
 
-        <v-btn class="" fab dark small color="" to="/profile">
+        
+
+        <v-btn class="mr-6" fab dark small color="" to="/profile">
           <v-icon dark>mdi-account</v-icon>
+        </v-btn> 
+
+        <v-btn class="" fab dark small color="" to="/">
+          <v-icon dark>mdi-location-exit</v-icon>
         </v-btn> 
       </div>
     </v-footer>
@@ -146,22 +156,21 @@ import axios from 'axios'
     computed: {
       ...mapGetters([
         'token',
-        'profile', 
+        'profile'
       ]),
-      notifyMsgCount(){
-          const _ = this;
-          // return _.notifyMsgs.length
-          var count = 0, 
-              unreadMsg,
-              totalMsgs = _.notifyMsgs;
-          totalMsgs.forEach(msg => {
-              msg.read == true ? count++ : count
-          });
-          unreadMsg = _.notifyMsgs.length - count
-          return unreadMsg
+        notifyMsgCount(){
+            const _ = this;
+            // return _.notifyMsgs.length
+            var count = 0, 
+                unreadMsg,
+                totalMsgs = _.notifyMsgs;
+            totalMsgs.forEach(msg => {
+                msg.read == true ? count++ : count
+            });
+            unreadMsg = _.notifyMsgs.length - count
+            return unreadMsg
 
-      },
-      
+        },
     },
     data: () => ({
       drawer: null,
@@ -175,7 +184,7 @@ import axios from 'axios'
         ],
     }),
     created() {
-      this.loadJobs() ; 
+      this.loadJobs() 
     },
     methods: {
       ...mapActions([
@@ -185,10 +194,13 @@ import axios from 'axios'
           this.$vuetify.theme.dark = !this.$vuetify.theme.dark;
       },
       loadJobs(){
-        const _ = this; 
+        const _ = this;
+        const headers = { 
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYzU3OGE1YTdiZTc1MDAxNzVjZmMwMiIsImlhdCI6MTU5MTAwNTQ3NH0.e-uUjBFx7DoChemaFQcMrYmIIa00q9mhucEzAs22Eb0`
+              // 'Authorization': `Bearer ${_.token}`
+          }
 
-          // const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYzU3OGE1YTdiZTc1MDAxNzVjZmMwMiIsImlhdCI6MTU5MTAwNTQ3NH0.e-uUjBFx7DoChemaFQcMrYmIIa00q9mhucEzAs22Eb0'
-          const token = _.token
+          const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlYzU3OGE1YTdiZTc1MDAxNzVjZmMwMiIsImlhdCI6MTU5MTAwNTQ3NH0.e-uUjBFx7DoChemaFQcMrYmIIa00q9mhucEzAs22Eb0'
           const Config = {
             headers: {
                 Authorization: "Bearer " + token
