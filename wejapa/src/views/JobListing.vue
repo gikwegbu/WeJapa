@@ -78,8 +78,7 @@ export default {
     },  
     methods: {
         ...mapActions([
-            'bidJob',
-            'completedJobs',
+            'bidJob', 
         ]), 
     },
 }

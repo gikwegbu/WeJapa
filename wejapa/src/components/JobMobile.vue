@@ -88,7 +88,7 @@
               
 
               <v-card-actions>  
-                <v-btn color="blue darken-1" class="white--text" light block rounded :disabled="singleJob.status == 'Open' ?  false : true"  @click="bid">
+                <v-btn color="primary" class="white--text" light block rounded :disabled="singleJob.status == 'Open' ?  false : true"  @click="bid">
                   {{ singleJob.status == 'Open' ?  'Bid' : 'Job SuccessFully Saved'  }}
                 </v-btn>
               </v-card-actions>
@@ -142,6 +142,9 @@ export default {
         }
     },
     methods: {
+        ...mapActions([
+            'bidJob', 
+        ]), 
         bid(){
             const _ = this; 
             _.bidJob(_.singleJob) 
