@@ -16,8 +16,8 @@
                                 </v-list-item-avatar>
 
                                 <v-list-item-content>
-                                <v-list-item-title > {{ job.title  }} </v-list-item-title>
-                                <v-list-item-subtitle > {{ job.type  }} </v-list-item-subtitle>
+                                <v-list-item-title > {{ job.title  }} </v-list-item-title> 
+                                <v-list-item-subtitle > {{ job.type.split('-')[0]  }} - <span :class="job.status == 'Closed' ? 'red--text' : 'green--text' "> {{ job.status  }} </span> </v-list-item-subtitle>
                                 </v-list-item-content>
 
                                 <v-list-item-action>
