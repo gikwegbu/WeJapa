@@ -115,9 +115,17 @@
           <v-icon dark>mdi-theme-light-dark</v-icon>
         </v-btn> 
 
-        <v-btn class="mr-12 ml-12" fab dark color="primary" to="/dashboard">
+        <v-btn class="ml-6" fab dark small color="" >
+          <v-icon dark>mdi-application</v-icon>
+        </v-btn> 
+
+        <v-btn class="mr-6 ml-6" fab dark color="primary" to="/dashboard">
           <v-icon dark>mdi-monitor-dashboard</v-icon>
         </v-btn>
+
+        <v-btn class="mr-6" fab dark small color="" to="/">
+          <v-icon dark>mdi-location-exit</v-icon>
+        </v-btn> 
 
         <v-btn class="" fab dark small color="" to="/profile">
           <v-icon dark>mdi-account</v-icon>

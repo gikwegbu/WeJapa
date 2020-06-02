@@ -4,13 +4,45 @@
             <v-card-title>
                 Latest Roles
                 <v-spacer></v-spacer> 
-                <div class="subtitle-1">View All >></div>   
+                <div class="subtitle-1" @click="filterJob()">
+                    {{ filterActive ? 'View Less ' : 'View All >>'   }}  
+                </div>   
             </v-card-title> 
             <v-container>
-                <v-row>
-                    <v-col cols="12">
+            <v-card-text>
+              <v-text-field v-model="search" placeholder="Search..." filled ></v-text-field>
+            </v-card-text>
+            <div class="grey lighten-1 pa-6 white--text text-center mt-12" v-if="searchJobs && !searchJobs.length">
+              <h3>Such Job does not exist, Try another keyword</h3>
+            </div>
+
+                <v-row v-else>
+                    <v-col cols="12" v-if="!filterActive">
                         <v-list rounded>  
-                            <v-list-item v-for="(job, index) in jobs" :key="index" @click="preview(job)" class="borderBottom ">
+                            <v-list-item v-for="(job, index) in searchJobs" :key="index" @click="preview(job)" class="borderBottom ">
+                                <v-list-item-avatar>
+                                    <v-img src="../assets/logo.png"  alt="WeJapa Logo"></v-img>
+                                </v-list-item-avatar>
+
+                                <v-list-item-content>
+                                <v-list-item-title > {{ job.title  }} </v-list-item-title> 
+                                <v-list-item-subtitle > {{ job.type.split('-')[0]  }} - <span :class="job.status == 'Closed' ? 'red--text' : 'green--text' "> {{ job.status  }} </span> </v-list-item-subtitle>
+                                </v-list-item-content>
+
+                                <v-list-item-action>
+                                    <v-icon color="grey">mdi-briefcase</v-icon> 
+                                    <v-list-item-action-text > &#36;{{ job.salary  }} </v-list-item-action-text> 
+                                </v-list-item-action>
+                            </v-list-item> 
+                        </v-list>
+                    </v-col>
+                    <v-col cols="12" v-else>
+                      <div class="grey lighten-1 pa-6 white--text text-center mt-12" v-if="searchFilteredJobs && !searchJobs.length">
+                        <h3>Such Job does not exist, Try another keyword</h3>
+                      </div>
+                        <v-list rounded v-else>  
+                            <!-- <v-list-item v-for="(job, index) in filteredJobs" :key="index" @click="preview(job)" class="borderBottom "> -->
+                            <v-list-item v-for="(job, index) in searchFilteredJobs" :key="index" @click="preview(job)" class="borderBottom ">
                                 <v-list-item-avatar>
                                     <v-img src="../assets/logo.png"  alt="WeJapa Logo"></v-img>
                                 </v-list-item-avatar>
@@ -115,10 +147,24 @@ export default {
      computed: { 
       ...mapGetters([
         'jobs'
-      ])
+      ]),
+      searchJobs: function(){ 
+        if (this.jobs) {
+          
+          return this.jobs.filter((job)=>{
+            return job.title.toLowerCase().match(this.search.toLowerCase())
+          })
+        }
+      },
+      searchFilteredJobs: function(){ 
+        return this.filteredJobs.filter((job)=>{
+          return job.title.toLowerCase().match(this.search.toLowerCase())
+        })
+      }
     }, 
     data() {
         return {
+            search: '',
             dialog: false,
             tab: null,
             jobExplainations: [
@@ -138,7 +184,9 @@ export default {
                 createdAt: "",
                 updatedAt: "",
                 __v: 0
-            },  
+            }, 
+            filteredJobs: [],
+            filterActive: false
         }
     },
     methods: {
@@ -150,7 +198,17 @@ export default {
         preview(val){ 
             this.singleJob = val;
             this.dialog = true;
-        }
+        },
+        filterJob(){
+          const _ = this;
+          _.filteredJobs = []
+          _.jobs.forEach(job => {
+            if (job.status == 'Open') {
+              _.filteredJobs.push(job)
+            }
+          }) 
+            _.filterActive = !_.filterActive
+        }, 
     },
 }
 </script>
